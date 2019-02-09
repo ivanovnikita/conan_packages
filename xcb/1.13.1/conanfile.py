@@ -11,14 +11,12 @@ class XdmcpConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "shared": [True, False]
-        , "static_deps": [True, False]
         , "lto": [True, False]
         , "with_xinput": [True, False]
         , "with_xkb": [True, False]
     }
     default_options = {
         "shared": False
-        , "static_deps": False
         , "lto": False
         , "with_xinput": False
         , "with_xkb": False
@@ -37,9 +35,6 @@ class XdmcpConan(ConanFile):
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
-
-        if self.options.static_deps:
-            autotools.link_flags.append("-static")
 
         if self.options.lto:
             autotools.flags.append("-flto")

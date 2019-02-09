@@ -9,8 +9,8 @@ class XauConan(ConanFile):
     url = "<Package recipe repository url here, for issues about the package>"
     description = "<Description of xau here>"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "static_deps": [True, False], "lto": [True, False]}
-    default_options = {"shared": False, "static_deps": False, "lto": False}
+    options = {"shared": [True, False], "lto": [True, False]}
+    default_options = {"shared": False, "lto": False}
 
     def source(self):
         tools.get(
@@ -23,9 +23,6 @@ class XauConan(ConanFile):
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
-
-        if self.options.static_deps:
-            autotools.link_flags.append("-static")
 
         if self.options.lto:
             autotools.flags.append("-flto")

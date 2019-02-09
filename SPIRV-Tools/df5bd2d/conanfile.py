@@ -8,8 +8,8 @@ class SpirvtoolsConan(ConanFile):
     url = "<Package recipe repository url here, for issues about the package>"
     description = "<Description of Spirvtools here>"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "static_deps": [True, False], "lto": [True, False]}
-    default_options = {"shared": False, "static_deps": False, "lto": False}
+    options = {"shared": [True, False], "lto": [True, False]}
+    default_options = {"shared": False, "lto": False}
     generators = "cmake"
 
     def source(self):
@@ -28,8 +28,6 @@ class SpirvtoolsConan(ConanFile):
         spirv_headers_dir = '{0}/..'.format(self.deps_cpp_info["SPIRV-Headers"].include_paths[0])
 
         cmake_linker_flags = ""
-        if self.options.static_deps == True:
-            cmake_linker_flags += " -static "
         if self.options.lto == True:
             cmake_linker_flags += " -fuse-ld=gold -fuse-linker-plugin "
             cmake.definitions["CMAKE_INTERPROCEDURAL_OPTIMIZATION"] = "TRUE"

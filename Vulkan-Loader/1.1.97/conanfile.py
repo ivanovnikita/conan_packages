@@ -11,13 +11,11 @@ class VulkanloaderConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "shared": [True, False]
-        , "static_deps": [True, False]
         , "lto": [True, False]
         , "with_xcb": [True, False]
     }
     default_options = {
         "shared": False
-        , "static_deps": False
         , "lto": False
         , "with_xcb": False
     }
@@ -49,8 +47,6 @@ class VulkanloaderConan(ConanFile):
         cmake = CMake(self)
 
         cmake_linker_flags = ""
-        if self.options.static_deps == True:
-            cmake_linker_flags += " -static "
         if self.options.lto == True:
             cmake_linker_flags += " -fuse-ld=gold -fuse-linker-plugin "
             cmake.definitions["CMAKE_INTERPROCEDURAL_OPTIMIZATION"] = "TRUE"
