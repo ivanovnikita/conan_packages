@@ -8,8 +8,8 @@ class GoogletestConan(ConanFile):
     url = "<Package recipe repository url here, for issues about the package>"
     description = "<Description of Googletest here>"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    options = {"shared": [True, False], "lto": [True, False]}
+    default_options = {"shared": False, "lto": False}
     generators = "cmake"
 
     def source(self):
@@ -22,7 +22,16 @@ class GoogletestConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(source_folder="googletest")
+
+        cmake_linker_flags = ""
+        if self.options.lto == True:
+            cmake_linker_flags += " -fuse-ld=gold -fuse-linker-plugin "
+            cmake.definitions["CMAKE_INTERPROCEDURAL_OPTIMIZATION"] = "TRUE"
+
+        if not cmake_linker_flags:
+            cmake.definitions["CMAKE_EXE_LINKER_FLAGS"] = cmake_linker_flags
+
+        cmake.configure(source_folder=f"{self.source_folder}/googletest")
         cmake.build()
         cmake.install()
 
