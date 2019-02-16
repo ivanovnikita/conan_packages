@@ -2,7 +2,7 @@ from conans import ConanFile, tools, AutoToolsBuildEnvironment
 import os
 
 
-class XdmcpConan(ConanFile):
+class XcbConan(ConanFile):
     name = "xcb"
     version = "1.13.1"
     license = "<Put the package license here>"
