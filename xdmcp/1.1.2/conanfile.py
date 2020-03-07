@@ -5,9 +5,6 @@ import os
 class XdmcpConan(ConanFile):
     name = "xdmcp"
     version = "1.1.2"
-    license = "<Put the package license here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of xdmcp here>"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "lto": [True, False]}
     default_options = {"shared": False, "lto": False}

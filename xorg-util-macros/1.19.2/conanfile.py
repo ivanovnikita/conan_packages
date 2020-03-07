@@ -5,9 +5,6 @@ import os
 class XorgUtilMacrosConan(ConanFile):
     name = "xorg-util-macros"
     version = "1.19.2"
-    license = "<Put the package license here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of XorgUtilMacros here>"
     settings = "os", "compiler", "build_type", "arch"
 
     def source(self):

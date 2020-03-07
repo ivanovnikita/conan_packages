@@ -5,9 +5,6 @@ import os
 class XcbUtilConan(ConanFile):
     name = "xcb-util"
     version = "0.4.0"
-    license = "<Put the package license here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of xcb-util here>"
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "shared": [True, False]
@@ -24,8 +21,8 @@ class XcbUtilConan(ConanFile):
         )
 
     def requirements(self):
-        self.requires.add("xorg-util-macros/1.19.2@ivanovnikita/stable", private=False)
-        self.requires.add("xcb/1.13.1@ivanovnikita/stable", private=False)
+        self.requires.add("xorg-util-macros/1.19.2", private=False)
+        self.requires.add("xcb/1.14", private=False)
 
     def build(self):
         autotools = AutoToolsBuildEnvironment(self)
