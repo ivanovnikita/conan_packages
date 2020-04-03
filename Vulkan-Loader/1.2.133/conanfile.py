@@ -38,7 +38,7 @@ class VulkanloaderConan(ConanFile):
         self.requires.add("Vulkan-Headers/1.2.133", private=False)
 
         if self.options.with_xcb:
-            self.requires.add("xcb/1.14@ivanovnikita/stable", private=False)
+            self.requires.add("xcb/1.14", private=False)
 
     def build(self):
         cmake = CMake(self)

@@ -40,7 +40,7 @@ class VulkanvalidationlayersConan(ConanFile):
         self.requires.add("glslang/3ed344d", private=False)
 
         if self.options.with_xcb:
-            self.requires.add("xcb/1.14@ivanovnikita/stable", private=False)
+            self.requires.add("xcb/1.14", private=False)
 
     def build(self):
         cmake = CMake(self)
