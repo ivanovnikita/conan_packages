@@ -91,7 +91,7 @@ class XcbConan(ConanFile):
         self.cpp_info.libs = ["xcb"]
 
         if self.options.with_xinput:
-            self.cpp_info.libs.append("xinput")
+            self.cpp_info.libs.append("xcb-xinput")
 
         if self.options.with_xkb:
             self.cpp_info.libs.append("xkb")
